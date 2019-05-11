@@ -37,6 +37,9 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.Write([]byte(strName))
+		r.ParseForm()
+		fmt.Printf("%v", r.Form["b"])
 	})
 	http.ListenAndServe(":4000", nil)
+	// 测试git可视化工具
 }
