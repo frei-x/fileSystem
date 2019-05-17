@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"os/user"
 	"runtime"
 	"strconv"
@@ -17,7 +18,6 @@ func init() {
 	userInfo, _ := user.Current()
 	fmt.Println(userInfo)
 	fmt.Println(userInfo.Username + ",您的系统:" + runtime.GOOS) //windows
-	//fmt.Println(exec.Command("explorer", "http://localhost:4000").Start()) //nil
 	files, err := ioutil.ReadDir("../")
 	arrFileName := []string{}
 	if err != nil {
@@ -47,9 +47,10 @@ func init() {
 	fmt.Println(setFileTime)
 	fileSys := fileInfo.Sys().(*syscall.Win32FileAttributeData) //win 系统调度
 	fmt.Println(fileSys.LastWriteTime.Nanoseconds())            //  纳秒 /1e6 为毫秒 最后修改时间
-	fmt.Println((fileSys.CreationTime.Nanoseconds()))           //创建时间 纳秒转秒
+	fmt.Println((fileSys.CreationTime.Nanoseconds()))           //创建时间
 	//	fmt.Println(time.Parse("2006-01-02 03:04:05", fileSys.CreationTime.Nanoseconds()/1e9)
 	fmt.Println(fileSys.LastAccessTime.Nanoseconds()) //最后访问时间
 	//slice1 := arrFileName[0:]
 	fmt.Printf("文件数量:%d", len(files))
+	exec.Command("explorer", "http://localhost:4000").Start()
 }
