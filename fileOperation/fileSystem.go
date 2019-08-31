@@ -18,7 +18,7 @@ func init() {
 	userInfo, _ := user.Current()
 	fmt.Println(userInfo)
 	fmt.Println(userInfo.Username + ",您的系统:" + runtime.GOOS) //windows
-	files, err := ioutil.ReadDir("../")
+	files, err := ioutil.ReadDir("./")
 	arrFileName := []string{}
 	if err != nil {
 		fmt.Println("读取错误:", err)
